@@ -1,0 +1,68 @@
+.notebook {
+  position: relative;
+  background-color: var(--green);
+  color: var(--black);
+  display: flex;
+  padding: 4vh;
+  border-radius: 3rem;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  width: min(50vw, 75rem); /* nunca passa de 1200px */
+  height: min(80vh, 50rem); /* nunca passa de 800px */
+}
+
+.ball {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--white);
+  border-radius: 50%;
+  margin: 1rem;
+  border: 1px solid gray;
+  flex-shrink: 0;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  padding: 10vh;
+}
+
+.main-container::-webkit-scrollbar {
+  display: none;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-svg {
+  width: clamp(5rem, 10vw, 10rem); /* responsivo, entre 80px e 160px */
+}
+
+.logo-title {
+  font-family: "Caveat Brush";
+  font-size: clamp(1.5rem, 3vw, 2rem); /* responsivo */
+}
+
+.forms-container {
+  width: 100%;
+  max-width: 37.5rem; /* mesmo max-width do form */
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3rem;
+  background-color: var(--green);
+}

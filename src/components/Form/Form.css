@@ -1,0 +1,46 @@
+.form-container {
+  width: 100%;
+  max-width: 37.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title-forms {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  color: var(--black);
+  margin: 0.5rem 0 0.25rem;
+}
+
+.form-input {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 0.625rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid gray;
+}
+
+.form-input input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: var(--black);
+  outline: none;
+}
+
+.form-input button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form-input button svg {
+  width: clamp(1rem, 2vw, 1.25rem);
+  height: clamp(1rem, 2vw, 1.25rem);
+  color: var(--black);
+}
