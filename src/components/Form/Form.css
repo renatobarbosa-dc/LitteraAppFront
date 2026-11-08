@@ -8,17 +8,16 @@
 
 .title-forms {
   font-size: clamp(0.8rem, 1.2vw, 1rem);
-  color: var(--black);
+  color: var(--blue-1);
   margin: 0.5rem 0 0.25rem;
 }
 
 .form-input {
   display: flex;
   align-items: center;
-  background-color: var(--white);
+  background-color: var(--blue-4);
   border-radius: 0.625rem;
   padding: 0.5rem 1rem;
-  border: 1px solid gray;
 }
 
 .form-input input {
@@ -26,8 +25,13 @@
   border: none;
   background: transparent;
   font-size: clamp(0.75rem, 1vw, 0.9rem);
-  color: var(--black);
+  color: var(--blue-1);
   outline: none;
+  padding: 1rem;
+}
+
+.form-input placeholder {
+  color: var(--blue-1);
 }
 
 .form-input button {
@@ -42,5 +46,6 @@
 .form-input button svg {
   width: clamp(1rem, 2vw, 1.25rem);
   height: clamp(1rem, 2vw, 1.25rem);
-  color: var(--black);
+  color: var(--blue-1);
+  padding: 1rem;
 }

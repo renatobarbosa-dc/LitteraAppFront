@@ -17,22 +17,22 @@ export function Form({ onSubmit }: FormProps) {
 
   return (
     <div className='form-container'>
-      <p className='title-forms'>Qual wiki vamos explorar hoje?</p>
+      <p className='title-forms'>Qual orientação você deseja dar à IA?</p>
       <div className='form-input'>
         <input
           value={url}
           onChange={e => setUrl(e.target.value)}
-          placeholder="https://pt.stardewvalleywiki.com/Stardew_Valley_Wiki"
+          placeholder="Ex.: Melhore a escrita acadêmica, a coesão e a clareza do meu TCC sobre..."
         />
         <button onClick={handleSubmit}></button>
       </div>
 
-      <p className='title-forms'>O que você quer saber?</p>
+      <p className='title-forms'>Qual trecho do seu texto você deseja aprimorar?</p>
       <div className='form-input'>
         <input
           value={question}
           onChange={e => setQuestion(e.target.value)}
-          placeholder="Onde fica a cueca do prefeito?"
+          placeholder="Cole aqui o trecho do seu texto..."
           onKeyDown={e => e.key === 'Enter' && handleSubmit()}
         />
         <button onClick={handleSubmit}><Send /></button>

@@ -7,6 +7,7 @@
   --blue-2: #151f24;
   --teal: #328887;
   --blue-3: #022832;
+  --blue-4: #010e14;
 }
 
 html {
@@ -15,7 +16,7 @@ html {
 
 body {
   background-color: var(--teal);
-  color: var(--blue-2);
+  color: var(--blue-1);
   font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
@@ -27,6 +28,7 @@ body {
 
 .notebook {
   margin-top: 1.5rem;
+  background-color: var(--blue-2);
 }
 
 .App {

@@ -1,9 +1,10 @@
-import { Ball } from "./Ball"
 import { Form } from "../Form/Form"
 import { Loading } from "../Loading/Loading"
 import { Chat } from "../Chat/Chat"
 import { useState, useEffect } from 'react'
 import "./Notebook.css"
+import logoPrincipal from "./../../assets/logo-principal.svg"
+
 
 type View = "home" | "loading" | "chat"
 
@@ -79,14 +80,11 @@ export function Notebook({ activeChat, onSaveChat }: NotebookProps) {
   
   return (
     <div className="notebook">
-      <Ball visible={view !== "loading"} />
-  
       <div className="main-container">
         {view === "home" && (
           <>
             <div className="logo-container">
-              <img className="logo-svg" src="src/assets/stan_dark.png" />
-              <div className="logo-title">StanAI</div>
+              <img className="logo-svg" src={logoPrincipal} />
             </div>
             <div className="forms-container">
               <Form onSubmit={handleSubmit} />

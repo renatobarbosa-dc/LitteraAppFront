@@ -4,20 +4,10 @@
   color: var(--black);
   display: flex;
   padding: 4vh;
-  border-radius: 3rem;
+  border-radius: 12px;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
   width: min(50vw, 75rem); /* nunca passa de 1200px */
   height: min(80vh, 50rem); /* nunca passa de 800px */
-}
-
-.ball {
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: var(--white);
-  border-radius: 50%;
-  margin: 1rem;
-  border: 1px solid gray;
-  flex-shrink: 0;
 }
 
 .main-container {
@@ -42,11 +32,6 @@
 
 .logo-svg {
   width: clamp(5rem, 10vw, 10rem); /* responsivo, entre 80px e 160px */
-}
-
-.logo-title {
-  font-family: "Caveat Brush";
-  font-size: clamp(1.5rem, 3vw, 2rem); /* responsivo */
 }
 
 .forms-container {
