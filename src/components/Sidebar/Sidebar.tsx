@@ -1,7 +1,7 @@
 import "./Sidebar.css";
-import { ChevronLeft, ChevronRight, Trash } from "lucide-react";
+import { Book, BookMarked, BookOpenText, ChevronLeft, ChevronRight, Trash } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
+import logoSecundaria from "./../../assets/logo-secundaria.svg"
 
 interface SidebarProps {
   chats: Chat[]
@@ -30,14 +30,25 @@ export function Sidebar({ chats, onNewChat, onSelectChat, onDeleteChat }: Sideba
   return (
     <div className="sidebar">
       <div className="menu-header">
-        <h1 className="menu-title">StanAI</h1>
+        <img src={logoSecundaria}/>
         <div className="arrow-left" onClick={toggleSidebar}>
           <ChevronLeft />
         </div>
       </div>
 
-      <div className="new-page-button-container">
-        <button className="new-page-button" onClick={onNewChat}>Nova Página</button>
+
+      <div className="read-page-button-container">
+        <button className="read-button" onClick={onNewChat}>
+          <BookMarked className="book-icon" size={'24px'}/>
+          {" "} Leitura Essencial
+        </button>
+      </div>
+
+      <div className="read-page-button-container">
+        <button className="read-button" onClick={onNewChat}>
+          <BookOpenText className="book-icon"size={'24px'}/>
+          {" "} Escrita Acadêmica
+        </button>
       </div>
 
       <p className="recents">Recentes:</p>
@@ -48,7 +59,7 @@ export function Sidebar({ chats, onNewChat, onSelectChat, onDeleteChat }: Sideba
             {chat.title}
             <Trash
               className="trash-icon"
-              size="1rem"
+              size="20px"
               onClick={e => {
                 e.stopPropagation()
                 onDeleteChat(chat.id)
@@ -57,10 +68,11 @@ export function Sidebar({ chats, onNewChat, onSelectChat, onDeleteChat }: Sideba
           </button>
         ))}
       </div>
-
-      <div className="theme-button-container">
-        <ThemeToggle />
+      
+      <div className="new-page-button-container">
+        <button className="new-page-button" onClick={onNewChat}>Nova Página</button>
       </div>
+      
     </div>
   );
 }
