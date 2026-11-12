@@ -1,4 +1,4 @@
-```css
+
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -121,6 +121,7 @@ html, body, #root {
 }
 
 .read-button {
+  text-decoration: none;
   border: none;
   border-radius: 25px;
   background-color: var(--blue-2);
@@ -186,4 +187,3 @@ html, body, #root {
   background-color: var(--white-2);
   color: var(--blue-1);
 }
-```

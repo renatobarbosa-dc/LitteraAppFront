@@ -1,69 +1,75 @@
-import { useState } from 'react'
-import { Sidebar } from './components/Sidebar/Sidebar'
-import { Notebook } from './components/Notebook/Notebook'
-import { ThemeProvider } from './contexts/ThemeContext';
+import { useState } from "react";
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Notebook } from "./components/Notebook/Notebook";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./styles/global.css";
+import { LiteraturePage } from "./components/LiteraturePage/LiteraturePage";
+import { WritingPage } from "./components/WritingPage/WritingPage";
 
 export interface Chat {
-  id: string
-  title: string
-  wikiUrl: string
-  messages: { role: 'user' | 'ai', content: string }[]
+  id: string;
+  title: string;
+  wikiUrl: string;
+  messages: { role: "user" | "ai"; content: string }[];
 }
 
 const loadChats = (): Chat[] => {
-  const saved = localStorage.getItem('stanai-chats')
-  return saved ? JSON.parse(saved) : []
-}
+  const saved = localStorage.getItem("stanai-chats");
+  return saved ? JSON.parse(saved) : [];
+};
 
 export function App() {
-  const [chats, setChats] = useState<Chat[]>(loadChats)
-  const [activeChatId, setActiveChatId] = useState<string | null>(null)
+  const [chats, setChats] = useState<Chat[]>(loadChats);
+  const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
   const saveChats = (updated: Chat[]) => {
-    setChats(updated)
-    localStorage.setItem('stanai-chats', JSON.stringify(updated))
-  }
+    setChats(updated);
+    localStorage.setItem("stanai-chats", JSON.stringify(updated));
+  };
 
   const handleNewChat = () => {
-    setActiveChatId(null) // volta pro home
-  }
+    setActiveChatId(null); // volta pro home
+  };
 
   const handleSelectChat = (id: string) => {
-    setActiveChatId(id)
-  }
+    setActiveChatId(id);
+  };
 
   const handleDeleteChat = (id: string) => {
-    const updated = chats.filter(c => c.id !== id)
-    saveChats(updated)
-    if (activeChatId === id) setActiveChatId(null)
-  }
+    const updated = chats.filter((c) => c.id !== id);
+    saveChats(updated);
+    if (activeChatId === id) setActiveChatId(null);
+  };
 
   const handleSaveChat = (chat: Chat) => {
-    const exists = chats.find(c => c.id === chat.id)
+    const exists = chats.find((c) => c.id === chat.id);
     const updated = exists
-      ? chats.map(c => c.id === chat.id ? chat : c)
-      : [chat, ...chats]
-    saveChats(updated)
-    setActiveChatId(chat.id)
-  }
+      ? chats.map((c) => (c.id === chat.id ? chat : c))
+      : [chat, ...chats];
+    saveChats(updated);
+    setActiveChatId(chat.id);
+  };
 
-  const activeChat = chats.find(c => c.id === activeChatId) ?? null
+  const activeChat = chats.find((c) => c.id === activeChatId) ?? null;
 
   return (
     <div>
-      <ThemeProvider>
-        <Sidebar
-          chats={chats}
-          onNewChat={handleNewChat}
-          onSelectChat={handleSelectChat}
-          onDeleteChat={handleDeleteChat}
-        />
-        <Notebook
-          activeChat={activeChat}
-          onSaveChat={handleSaveChat}
-        />
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider>
+          <Sidebar
+            chats={chats}
+            onNewChat={handleNewChat}
+            onSelectChat={handleSelectChat}
+            onDeleteChat={handleDeleteChat}
+          />
+          <Routes>
+            <Route path="/" element={<Notebook activeChat={activeChat} onSaveChat={handleSaveChat} />} />
+            <Route path="/leitura" element={<LiteraturePage />} />
+            <Route path="/escrita" element={<WritingPage />} />
+          </Routes>
+        </ThemeProvider>
+      </Router>
     </div>
-  )
+  );
 }

@@ -1,0 +1,25 @@
+.main-container {
+    padding: 0;
+}
+
+.literature-page {
+  position: relative;
+  background-color: var(--blue-2);
+  color: var(--black);
+  display: flex;
+  padding: 4vh;
+  border-radius: 12px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  width: min(50vw, 75rem); /* nunca passa de 1200px */
+  height: min(80vh, 50rem); /* nunca passa de 800px */
+}
+
+h1 {
+ margin-top: 0;
+ margin-left: 0;
+}
+
+.information-boxes{
+    display: flex;
+    gap: 12px;
+}
