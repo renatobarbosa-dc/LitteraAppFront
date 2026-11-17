@@ -203,11 +203,12 @@ export function LiteraturePage() {
           </section>
         </aside>
       </div>
-
+      {/*
       <footer className="literature-footer">
         <p>Baseado nas aulas 1 a 8 de Metodologia Científica.</p>
         <p>Adapte o roteiro à sua área e às orientações de quem acompanha sua pesquisa.</p>
       </footer>
+      */}
     </main>
   );
 }
