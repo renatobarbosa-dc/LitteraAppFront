@@ -1,83 +1,82 @@
-import { Form } from "../Form/Form"
-import { Loading } from "../Loading/Loading"
-import { Chat } from "../Chat/Chat"
-import { useState, useEffect } from 'react'
-import "./Notebook.css"
-import logoPrincipal from "./../../assets/logo-principal.svg"
+import { Form } from "../Form/Form";
+import { Loading } from "../Loading/Loading";
+import { Chat } from "../Chat/Chat";
+import { useState, useEffect } from "react";
+import "./Notebook.css";
+import logoPrincipal from "./../../assets/logo-principal.svg";
 
-
-type View = "home" | "loading" | "chat"
+type View = "home" | "loading" | "chat";
 
 interface Message {
-  role: "user" | "ai"
-  content: string
+  role: "user" | "ai";
+  content: string;
 }
 
 interface NotebookProps {
-  activeChat: Chat | null
-  onSaveChat: (chat: Chat) => void
+  activeChat: Chat | null;
+  onSaveChat: (chat: Chat) => void;
 }
 
 export function Notebook({ activeChat, onSaveChat }: NotebookProps) {
-  const [view, setView] = useState<View>("home")
-  const [messages, setMessages] = useState<Message[]>([])
-  const [wikiUrl, setWikiUrl] = useState("")
-  const [isTyping, setIsTyping] = useState(false)
+  const [view, setView] = useState<View>("home");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [wikiUrl, setWikiUrl] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     if (activeChat) {
-      setMessages(activeChat.messages)
-      setWikiUrl(activeChat.wikiUrl)
-      setView('chat')
+      setMessages(activeChat.messages);
+      setWikiUrl(activeChat.wikiUrl);
+      setView("chat");
     } else {
-      setMessages([])
-      setWikiUrl('')
-      setView('home')
+      setMessages([]);
+      setWikiUrl("");
+      setView("home");
     }
-  }, [activeChat?.id])
+  }, [activeChat?.id]);
 
   const handleSubmit = async (url: string, question: string) => {
-    setWikiUrl(url)
-    setView('loading')
+    setWikiUrl(url);
+    setView("loading");
 
     // sua API aqui
-    await new Promise(res => setTimeout(res, 1500))
-    const fakeResponse = 'Resposta da wiki aqui...'
+    await new Promise((res) => setTimeout(res, 1500));
+    const fakeResponse = "Resposta da wiki aqui...";
 
     const newMessages = [
-      { role: 'user' as const, content: question },
-      { role: 'ai' as const, content: fakeResponse }
-    ]
+      { role: "user" as const, content: question },
+      { role: "ai" as const, content: fakeResponse },
+    ];
 
-    setMessages(newMessages)
-    setView('chat')
+    setMessages(newMessages);
+    setView("chat");
 
     onSaveChat({
       id: crypto.randomUUID(),
       title: question.slice(0, 30), // usa a pergunta como título
       wikiUrl: url,
-      messages: newMessages
-    })
-  }
+      messages: newMessages,
+    });
+  };
 
   const handleNewMessage = async (question: string) => {
-    const updated = [...messages, { role: 'user' as const, content: question }]
-    setMessages(updated)
-    setIsTyping(true) // começa loading
-  
+    const updated = [...messages, { role: "user" as const, content: question }];
+    setMessages(updated);
+    setIsTyping(true); // começa loading
+
     // sua API aqui — substitua pelo await da chamada real
-    await new Promise(res => setTimeout(res, 1500))
-    const fakeResponse = 'Outra resposta...'
-  
-    setIsTyping(false) // para loading
-    const final = [...updated, { role: 'ai' as const, content: fakeResponse }]
-    setMessages(final)
-  
+    await new Promise((res) => setTimeout(res, 1500));
+    const fakeResponse = "Outra resposta...";
+
+    setIsTyping(false); // para loading
+    const final = [...updated, { role: "ai" as const, content: fakeResponse }];
+    setMessages(final);
+
     if (activeChat) {
-      onSaveChat({ ...activeChat, messages: final })
+      onSaveChat({ ...activeChat, messages: final });
     }
-  }
-  
+  };
+
   return (
     <div className="notebook">
       <div className="main-container">
@@ -91,17 +90,22 @@ export function Notebook({ activeChat, onSaveChat }: NotebookProps) {
             </div>
           </>
         )}
-  
+
         {view === "chat" && (
-          <Chat messages={messages} wikiUrl={wikiUrl} onNewMessage={handleNewMessage} isTyping={isTyping} />
+          <Chat
+            messages={messages}
+            wikiUrl={wikiUrl}
+            onNewMessage={handleNewMessage}
+            isTyping={isTyping}
+          />
         )}
       </div>
-  
+
       {view === "loading" && (
         <div className="loading-overlay">
           <Loading />
         </div>
       )}
     </div>
-  )
+  );
 }
