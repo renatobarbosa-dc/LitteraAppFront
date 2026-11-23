@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Notebook } from "./components/Notebook/Notebook";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/global.css";
 import { LiteraturePage } from "./components/LiteraturePage/LiteraturePage";
 import { WritingPage } from "./components/WritingPage/WritingPage";
@@ -11,6 +11,8 @@ export interface Chat {
   id: string;
   title: string;
   wikiUrl: string;
+  documentoId?: string;
+  trechoAtual?: string;
   messages: { role: "user" | "ai"; content: string }[];
 }
 
@@ -64,7 +66,12 @@ export function App() {
             onDeleteChat={handleDeleteChat}
           />
           <Routes>
-            <Route path="/" element={<Notebook activeChat={activeChat} onSaveChat={handleSaveChat} />} />
+            <Route
+              path="/"
+              element={
+                <Notebook activeChat={activeChat} onSaveChat={handleSaveChat} />
+              }
+            />
             <Route path="/leitura" element={<LiteraturePage />} />
             <Route path="/escrita" element={<WritingPage />} />
           </Routes>
